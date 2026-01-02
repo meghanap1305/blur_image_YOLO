@@ -19,3 +19,5 @@ Model format: PyTorch serialized weights (.pt).
 File Structure
 comparators.py: The main analysis script. It loads both the baseline model and my custom trained model, runs inference on input data, and generates a visual comparison of the performance.
 fog_final_best.pt: The custom model weights. This file contains the parameters of the YOLOv8 neural network after being fine-tuned on the foggy dataset. It is the "brain" of the robust detector.
+Note: The training process did not retain a formal labeled validation set or YOLO data configuration file. Therefore, standard metrics such as mAP could not be computed. Evaluation is performed via robustness analysis, comparing baseline and fine-tuned models under systematically increased fog density using identical inputs.
+will be retraining it soon to add a yaml configuration to show the numbers 
