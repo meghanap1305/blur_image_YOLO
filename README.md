@@ -1,15 +1,21 @@
-Robust Object Detection (YOLOv8)
-This project focuses on detecting objects in "degraded environments" (like foggy, blurry, or low-light images) where standard models usually fail
-The Problem: Most object detection models work perfectly on clear images. But when you test them on a blurry CCTV feed or a foggy road, they stop detecting things. This is called Domain Shift
-My Solution: I used YOLOv8 and fine-tuned it to handle these specific conditions. The goal is to make a model that is robust enough to see cars, people, and objects even when the image quality is low
-Challenges Faced:
-One of the problem is when I trained the model to detect better in foggy or blurry images, it stopped detecting objects in the normal, clear environment.It was like the model got confused—as soon as it got better at the "hard" images, it got worse at the "easy" ones. I had to balance it to work for both types
-Tech Stack:
-Model: YOLOv8 (Ultralytics)
-Language: Python
-Libraries: OpenCV, PyTorch, NumPy
-Requirements :pip install ultralytics opencv-python
-Future Plans:
-Optimize the code to run faster on live video.
-Update the code for Domain shift like the day and nightlight for which i should work on datasets 
-and also deal with motion shift 
+Robust Object Detection 
+Overview
+Standard object detection models like YOLOv8 are trained on clear, high-quality images (like the COCO dataset). When these models encounter foggy or hazy weather, their accuracy drops significantly—a problem known as "Domain Shift." This project addresses that failure point. I have fine-tuned a YOLOv8 model specifically to detect objects in degraded visual environments (fog), ensuring reliable performance where standard models fail
+How It Works (The AI Part)
+The core of this project is Transfer Learning to bridge the gap between clear and foggy domains
+The Problem: Fog reduces contrast and blurs edges, which are the primary features Convolutional Neural Networks (CNNs) use to identify objects. Standard models miss cars and pedestrians in these conditions because they haven't seen enough fog during training
+The Solution: I used a pre-trained YOLOv8 model as a baseline and performed fine-tuning using physics based rendering (Beer Lamberts Law) on coco dataset. This process updates the model's weights to recognize features even when there are natural disturbances in the image
+The Result: The model fog_final_best.pt has learned to "see through" the noise, maintaining high confidence scores for detections even in low-visibility scenarios.
+Comparison Logic
+To prove the improvement, I built a comparator script that runs a side-by-side analysis
+It runs a standard,YOLO model on atest image to establish a baseline (often showing missed detections)
+It runs my trained fog_final_best.pt model on the exact same input
+Visualization: The script outputs a comparison where you can clearly see the custom model detecting objects that the standard model completely ignores.infact the model works good in foggy environment than in clear images i have solved this problem to an extent by inlcuding foggy as well as clear images in the dataset, it still continues but has improved a lot
+Tech Stack
+Framework: Ultralytics YOLOv8 (PyTorch).
+Language: Python.
+Computer Vision: OpenCV (cv2) for image processing and drawing bounding boxes.
+Model format: PyTorch serialized weights (.pt).
+File Structure
+comparators.py: The main analysis script. It loads both the baseline model and my custom trained model, runs inference on input data, and generates a visual comparison of the performance.
+fog_final_best.pt: The custom model weights. This file contains the parameters of the YOLOv8 neural network after being fine-tuned on the foggy dataset. It is the "brain" of the robust detector.
