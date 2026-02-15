@@ -28,7 +28,7 @@ fog_final_best.pt: The custom model weights. This file contains the parameters o
 Note: The training process did not retain a formal labeled validation set or YOLO data configuration file. Therefore, standard metrics such as mAP could not be computed. Evaluation is performed via robustness analysis, comparing baseline and fine-tuned models under systematically increased fog density using identical inputs.
 will be retraining it soon to add a yaml configuration to show the numbers 
 
-output:This image shows the problem of catastrophic forgetting due to fine tuning 
+output:This image shows the problem of catastrophic forgetting due to fine tuning :the custom model failed detecting images that are not in a fog environment ,like the first few cars
 <img width="1835" height="655" alt="Screenshot 2025-12-29 121120" src="https://github.com/user-attachments/assets/327492df-6f59-4ae1-8e4f-8a39ce869772" />
 this is the result after solving the problem
 <img width="1865" height="445" alt="image" src="https://github.com/user-attachments/assets/043f01d3-c62d-4a43-97f7-357b860d02f8" />
