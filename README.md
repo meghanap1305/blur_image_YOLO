@@ -27,6 +27,7 @@ comparators.py: The main analysis script. It loads both the baseline model and m
 fog_final_best.pt: The custom model weights. This file contains the parameters of the YOLOv8 neural network after being fine-tuned on the foggy dataset. It is the "brain" of the robust detector.
 Note: The training process did not retain a formal labeled validation set or YOLO data configuration file. Therefore, standard metrics such as mAP could not be computed. Evaluation is performed via robustness analysis, comparing baseline and fine-tuned models under systematically increased fog density using identical inputs.
 will be retraining it soon to add a yaml configuration to show the numbers 
+
 output:This image shows the problem of catastrophic forgetting due to fine tuning 
 <img width="1835" height="655" alt="Screenshot 2025-12-29 121120" src="https://github.com/user-attachments/assets/327492df-6f59-4ae1-8e4f-8a39ce869772" />
 this is the result after solving the problem
